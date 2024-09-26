@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form id="login-form">
+      <label for="user_id">User ID:</label>
+      <input type="text" id="user_id" name="user_id"><br><br>
+      <label for="ip_address">IP Address:</label>
+      <input type="text" id="ip_address" name="ip_address"><br><br>
+      <input type="submit" value="Login">
+    </form>
+
+    <script>
+      const form = document.getElementById('login-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userId = document.getElementById('user_id').value;
+        const ipAddress = document.getElementById('ip_address').value;
+        const timestamp = new Date().getTime();
+
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user_id: userId, timestamp: timestamp, ip_address: ipAddress })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'suspicious') {
+            alert('Suspicious login attempt detected!');
+          } else {
+            alert('Login attempt is normal.');
+          }
+        })
+        .catch(error => console.error(error));
+      });
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>MS SPAM DETECTOR</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='spam-favicon.ico') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!-- Website Title -->
+    	<div class="container">
+    		<h1 class='container-heading'><span>SPAM DETECTOR</h1>
+    	</div>
+
+        <!-- Text Area -->
+    	<div class="ml-container">
+            <div class='description'>
+    			<p>Please type in the text box to check whether the message is a Spam or Not</p>
+    		</div>
+            <div>
+                <form action="{{ url_for('predict') }}" method="POST">
+        		<textarea class='message-box' name="message" rows="15" cols="75" placeholder="Enter Your Message Here.... "></textarea><br/>
+        		<input type="submit" class="my-cta-button" value="Predict">
+        	</form>
+            </div>
+    		
+    	</div>
+
+        <!-- Footer -->
+       <div class='footer'>
+       </div>
+
+    </body>
+</html> -->
