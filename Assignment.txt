@@ -1,0 +1,32 @@
+Assignment:-
+Create a dataset containing absdiff images with thousand samples for each class (signing and not signing)
+
+Dataset format:-
+1) The Dataset should contain absdiff images not rgb or greyscale(black and white) images
+2) Each class should have around thousand samples(1000 absdiff images per class)
+
+Classes:-
+1) Signing
+2) Not signing
+
+Video recording:-
+1) Record one video for each position
+2) Front position (head to chest)
+3) Middle position (head to abdomen)
+4) Far position (head to hip)
+
+Augments to use:-
+1) Rotation use any two value between -25 to 25 Degree and perform two augs. For example one aug with -18 degree and another with 10 degree.
+2) Horizontal flip
+
+Notes:-
+1) The size of the image should be 256x256
+2) Only signing motion with hands should be in the signing class folder
+3) All the other motions that you do while recording the video should be considered as not signing class
+4) The person should be covered from head to hip in all frames
+5) The person should always be in the centre of the frame(use crop accordingly)
+6) Save the files in the a zip file upload it to drive and share the link to the spreadsheet shared in the group
+7) The deadline for the dataset is Friday end of day(26-08-2022)
+
+Do this if possible:-
+Create a model with vgg16 as reference to build it and train it using your dataset to identify weather the person is signing or not.
